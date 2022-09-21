@@ -1,0 +1,144 @@
+﻿@model IEnumerable<Bill_Portal.Models.AspNetUsers>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-primary">Users</h1>
+
+<p>
+   
+</p>
+<table class="table table-hover table-light table-responsive-sm">
+    <thead class="bg-info text-white">
+        <tr>
+            <th>
+                @*@Html.DisplayName("Sr No.")*@
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NormalizedUserName)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.NormalizedEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmailConfirmed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PasswordHash)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SecurityStamp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ConcurrencyStamp)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.PhoneNumberConfirmed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TwoFactorEnabled)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LockoutEnd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LockoutEnabled)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccessFailedCount)
+            </th>
+ *@          
+            <th>
+                @Html.DisplayNameFor(model => model.Role)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.RoleId)
+            </th>*@
+            <th>
+                <a class="btn btn-light float-right" asp-action="SignUpUser" asp-controller="Accounts">Create New</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int rowNo = 0;
+        }
+@foreach (var item in Model) {
+        <tr>
+                <td>
+                    @(rowNo += 1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+           @* <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NormalizedUserName)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+           @* <td>
+                @Html.DisplayFor(modelItem => item.NormalizedEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailConfirmed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PasswordHash)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.SecurityStamp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConcurrencyStamp)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+           @* <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumberConfirmed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TwoFactorEnabled)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LockoutEnd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LockoutEnabled)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccessFaile  dCount)
+            </td>*@
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Role)
+            </td>
+           @* <td>
+                @Html.DisplayFor(modelItem => item.RoleId)
+            </td>*@
+            <td class="float-right">
+                <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
