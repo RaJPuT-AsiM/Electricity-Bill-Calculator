@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Bill_Portal.Models.notification>
+
+@{
+    ViewData["Title"] = "notifications_list";
+}
+
+<h1 class="text-info">Notifications</h1>
+
+<table class="table table-hover table-light table-responsive-sm">
+    <thead class="bg-info text-white">
+        <tr>
+            <th>
+                @*@Html.DisplayName("Sr No.")*@
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.notification_serial)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.notification_title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.notification_document)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.date)
+            </th>
+            <th>
+                <a class="btn btn-light float-right" asp-action="Create" asp-controller="CRUD">Add Notification</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int rowNo = 0;
+        }
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @(rowNo += 1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.notification_serial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.notification_title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.notification_document)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.date)
+            </td>
+            <td class="float-right">                    
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.notification_id">Edit</a> |
+                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.notification_id">Details</a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.notification_id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

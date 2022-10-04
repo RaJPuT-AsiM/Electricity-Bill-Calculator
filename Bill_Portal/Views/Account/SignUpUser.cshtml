@@ -6,7 +6,7 @@
 
 <!DOCTYPE html>
 
-<html>
+@*<html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Sign Up User</title>
@@ -48,7 +48,7 @@
                         <label asp-for="RoleId" class="control-label"></label>&nbsp; &nbsp;<span asp-validation-for="RoleId" class="text-danger font-weight-bold"></span>
                         <input asp-for="RoleId" class="form-control" />
                         
-                    </div>*@
+                    </div>
                    
                     <div class="form-group">
                         <label asp-for="Password" class="control-label"></label>&nbsp; &nbsp;<span asp-validation-for="Password" class="text-danger font-weight-bold"></span>
@@ -78,10 +78,10 @@
    
 </div>
 </body>
-</html>
+</html>*@
 
 
-@*<html>
+<html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Sign In User</title>
@@ -162,12 +162,12 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
                                 </div>
-                                <input id="password" asp-for="ConfirmPassword" class="form-control" placeholder="Confirm Password" />
+                                <input id="confirm_password" asp-for="ConfirmPassword" class="form-control" placeholder="Confirm Password" />
 
                                 <div class="input-group-append" style="cursor:pointer">
-                                    <span class="input-group-text" onclick="password_show_hide();">
-                                        <i class="fas fa-eye" style="cursor:pointer" id="show_eye"></i>
-                                        <i class="fas fa-eye-slash d-none" style="cursor:pointer" id="hide_eye"></i>
+                                    <span class="input-group-text" onclick="confirm_password_show_hide();">
+                                        <i class="fas fa-eye" style="cursor:pointer" id="confirm_show_eye"></i>
+                                        <i class="fas fa-eye-slash d-none" style="cursor:pointer" id="confirm_hide_eye"></i>
                                     </span>
                                 </div>
                                 &nbsp;<span asp-validation-for="ConfirmPassword" class="font-weight-bold text-danger"></span>
@@ -177,8 +177,7 @@
                         <div asp-validation-summary="ModelOnly" class="alert-danger col-12"></div>
 
                         <div class="form-group col-sm-12">
-                            @*<input type="submit" value="Register" class="btn btn-primary float-right" /><br />
-                            <input type="submit" id="btnSubmit" value="Register" class="btn btn-primary float-right" />
+          <br/>                  <input type="submit" id="btnSubmit" value="Register" class="btn btn-primary float-right" />
                         </div>
                     </div>
                 </form>
@@ -186,7 +185,7 @@
         </div>
     </div>
 </body>
-</html>*@
+</html>
 
 
 
@@ -206,6 +205,22 @@
             x.type = "password";
             show_eye.style.display = "block";
             hide_eye.style.display = "none";
+        }
+    }
+
+    function confirm_password_show_hide() {
+        var x = document.getElementById("confirm_password");
+        var confirm_show_eye = document.getElementById("confirm_show_eye");
+        var confirm_hide_eye = document.getElementById("confirm_hide_eye");
+        confirm_hide_eye.classList.remove("d-none");
+        if (x.type === "password") {
+            x.type = "text";
+            confirm_show_eye.style.display = "none";
+            confirm_hide_eye.style.display = "block";
+        } else {
+            x.type = "password";
+            confirm_show_eye.style.display = "block";
+            confirm_hide_eye.style.display = "none";
         }
     }
 </script>   

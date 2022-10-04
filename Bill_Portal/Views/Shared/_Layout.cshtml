@@ -33,10 +33,10 @@
                             <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-controller="Dashboard" asp-action="Index">Tarifs</a>
+                            <a class="nav-link text-white" asp-controller="" asp-action="">Tarifs</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-controller="Roles" asp-action="ListRoles">Notifications</a>
+                            <a class="nav-link text-white" asp-controller="CRUD" asp-action="notifications_list">Notifications</a>
                         </li>
 
                         @if (_signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
@@ -48,7 +48,7 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <a class="dropdown-item" asp-controller="Dashboard"
-                                   asp-action="ListUsers"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Users</a>
+                                   asp-action="Index"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Users</a>
                                    <hr/>
                                     <a class="dropdown-item" asp-controller="Roles"
                                    asp-action="ListRoles"><i class=" fas fa-people-line fa-sm fa-fw mr-2 text-gray-400"></i>Roles</a>

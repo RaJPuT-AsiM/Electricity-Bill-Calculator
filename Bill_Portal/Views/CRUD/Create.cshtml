@@ -1,0 +1,50 @@
+﻿@model Bill_Portal.Models.notification
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>notification</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="notification_serial" class="control-label"></label>
+                <input asp-for="notification_serial" class="form-control" />
+                <span asp-validation-for="notification_serial" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="notification_title" class="control-label"></label>
+                <input asp-for="notification_title" class="form-control" />
+                <span asp-validation-for="notification_title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="notification_document" class="control-label"></label>
+                <input asp-for="notification_document" class="form-control" />
+                <span asp-validation-for="notification_document" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="description" class="control-label"></label>
+                <input asp-for="description" class="form-control" />
+                <span asp-validation-for="description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="date" class="control-label"></label>
+                <input asp-for="date" class="form-control" />
+                <span asp-validation-for="date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

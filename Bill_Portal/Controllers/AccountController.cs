@@ -41,22 +41,23 @@ namespace Bill_Portal.Controllers
                     }
                     return View(userModel);
                 }
+
                 ModelState.Clear();
                 ViewBag.Message = "Sign Up Successfull";
                 
             }
-            return View();
+            return RedirectToAction("Index","Dashboard");
         }
 
         // Login
-        //[Route("login")]
+        
         [HttpGet]
         public IActionResult SignInUser()
         {
             return View();
         }
 
-        //[Route("login")]    
+          
         [HttpPost]
         public async Task<IActionResult> SignInUser(SignInUserModel signInUserModel,string returnUrl)
         {

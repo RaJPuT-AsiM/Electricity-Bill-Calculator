@@ -217,6 +217,62 @@ namespace Bill_Portal.Migrations.Billing_Portal_Db_CRUD_
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("Bill_Portal.Models.disco", b =>
+                {
+                    b.Property<int>("disco_id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("current_status")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("disco_name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("disco_notificationnotification_id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("notification_id")
+                        .HasColumnType("int");
+
+                    b.HasKey("disco_id");
+
+                    b.HasIndex("disco_notificationnotification_id");
+
+                    b.ToTable("discos");
+                });
+
+            modelBuilder.Entity("Bill_Portal.Models.notification", b =>
+                {
+                    b.Property<int>("notification_id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("notification_document")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("notification_serial")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("notification_title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("notification_id");
+
+                    b.ToTable("notifications");
+                });
+
             modelBuilder.Entity("Bill_Portal.Models.AspNetRoleClaims", b =>
                 {
                     b.HasOne("Bill_Portal.Models.AspNetRoles", "Role")
@@ -266,6 +322,13 @@ namespace Bill_Portal.Migrations.Billing_Portal_Db_CRUD_
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Bill_Portal.Models.disco", b =>
+                {
+                    b.HasOne("Bill_Portal.Models.notification", "disco_notification")
+                        .WithMany()
+                        .HasForeignKey("disco_notificationnotification_id");
                 });
 #pragma warning restore 612, 618
         }

@@ -438,3 +438,5 @@ C:\Users\Asim RaJPuT\Desktop\Bill_Portal\Bill_Portal\obj\Debug\netcoreapp3.1\Raz
 C:\Users\Asim RaJPuT\Desktop\Bill_Portal\Bill_Portal\obj\Debug\netcoreapp3.1\Razor\Views\Account\login.cshtml.g.cs
 C:\Users\Asim RaJPuT\Desktop\Bill_Portal\Bill_Portal\obj\Debug\netcoreapp3.1\Razor\Views\Account\SignInUser.cshtml.g.cs
 C:\Users\Asim RaJPuT\Desktop\Bill_Portal\Bill_Portal\obj\Debug\netcoreapp3.1\Razor\Views\Account\SignUpUser.cshtml.g.cs
+C:\Users\Asim RaJPuT\Desktop\Bill_Portal\Bill_Portal\obj\Debug\netcoreapp3.1\Razor\Views\CRUD\notifications_list.cshtml.g.cs
+C:\Users\Asim RaJPuT\Desktop\Bill_Portal\Bill_Portal\obj\Debug\netcoreapp3.1\Razor\Views\CRUD\Create.cshtml.g.cs

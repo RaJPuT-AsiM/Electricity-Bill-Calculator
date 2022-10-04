@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bill_Portal.Migrations.Billing_Portal_Db_CRUD_
 {
     [DbContext(typeof(Billing_Portal_Db_CRUD_Context))]
-    [Migration("20221004061555_role coloumn deleted")]
-    partial class rolecoloumndeleted
+    [Migration("20221004093353_notification and disco table added")]
+    partial class notificationanddiscotableadded
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -196,12 +196,6 @@ namespace Bill_Portal.Migrations.Billing_Portal_Db_CRUD_
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Role")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RoleId")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -223,6 +217,62 @@ namespace Bill_Portal.Migrations.Billing_Portal_Db_CRUD_
                         .HasFilter("([NormalizedUserName] IS NOT NULL)");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("Bill_Portal.Models.disco", b =>
+                {
+                    b.Property<int>("disco_id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("current_status")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("disco_name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("disco_notificationnotification_id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("notification_id")
+                        .HasColumnType("int");
+
+                    b.HasKey("disco_id");
+
+                    b.HasIndex("disco_notificationnotification_id");
+
+                    b.ToTable("discos");
+                });
+
+            modelBuilder.Entity("Bill_Portal.Models.notification", b =>
+                {
+                    b.Property<int>("notification_id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("notification_document")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("notification_serial")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("notification_title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("notification_id");
+
+                    b.ToTable("notifications");
                 });
 
             modelBuilder.Entity("Bill_Portal.Models.AspNetRoleClaims", b =>
@@ -274,6 +324,13 @@ namespace Bill_Portal.Migrations.Billing_Portal_Db_CRUD_
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Bill_Portal.Models.disco", b =>
+                {
+                    b.HasOne("Bill_Portal.Models.notification", "disco_notification")
+                        .WithMany()
+                        .HasForeignKey("disco_notificationnotification_id");
                 });
 #pragma warning restore 612, 618
         }

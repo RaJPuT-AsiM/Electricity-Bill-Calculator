@@ -17,15 +17,12 @@ using Bill_Portal.Services;
 
 namespace Bill_Portal.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public class Dashboard : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<BillUsers> _userManager;
-        //private readonly ILogger<AdministrationController> _logger;
         private readonly Billing_Portal_Db_CRUD_Context _context;
-        
-
         public Dashboard(Billing_Portal_Db_CRUD_Context context,
             RoleManager<IdentityRole> roleManager,
             UserManager<BillUsers> userManager
@@ -33,9 +30,7 @@ namespace Bill_Portal.Controllers
         {            
             _roleManager = roleManager;
             _userManager = userManager;
-            //_logger = logger;
-            _context = context;
-            
+            _context = context;            
         }
 
         // GET: TransactionModels
@@ -72,9 +67,7 @@ namespace Bill_Portal.Controllers
             }
             return View(employees);
         }
-
-
-        //GET: TransactionModels/Details/5
+             
         public async Task<IActionResult> Details(string? id)
         {
             if (id == null)
@@ -89,7 +82,6 @@ namespace Bill_Portal.Controllers
             return View(transactionModel);
         }
 
-        // GET: TransactionModels/Edit/5
         public async Task<IActionResult> Edit(string? id)
         {
             if (id == null)
@@ -139,7 +131,6 @@ namespace Bill_Portal.Controllers
             return View(transactionModel);
         }
 
-        //// GET: TransactionModels/Delete/5
         ////public async Task<IActionResult> Delete(int? id)
         ////{
         ////    if (id == null)
@@ -245,7 +236,7 @@ namespace Bill_Portal.Controllers
         //Manage User Roles
 
         [HttpGet]
-        //[Authorize(Policy = "EditRolePolicy")]
+        
         public async Task<IActionResult> ManageUserRoles(string? id, string? name)
         {
             ViewBag.userName = name;
@@ -286,7 +277,7 @@ namespace Bill_Portal.Controllers
         }
 
         [HttpPost]
-        //[Authorize(Policy = "EditRolePolicy")]
+        
         public async Task<IActionResult> ManageUserRoles(List<UserRolesViewModel> model, string? id)
         {            
             var user = await _userManager.FindByIdAsync(id);            
@@ -318,7 +309,6 @@ namespace Bill_Portal.Controllers
 
             return RedirectToAction("Index", new { Id = id });
         }
-
 
         [HttpGet]
         public IActionResult ListUsers()

@@ -62,7 +62,6 @@ namespace Bill_Portal.Controllers
             return View(createRoleViewModel);
         }
 
-
         [HttpGet]
         public async Task<IActionResult> EditRole(string id)
         {
@@ -121,6 +120,46 @@ namespace Bill_Portal.Controllers
             }
         }
 
+        [HttpPost]
+        public async Task<IActionResult> DeleteRole(string id)
+        {
+            var role = await _roleManager.FindByIdAsync(id);
+
+            if (role == null)
+            {
+                ViewBag.ErrorMessage = $"Role with Id = {id} cannot be found";
+                return View("NotFound");
+            }
+            else
+            {
+                // Wrap the code in a try/catch block
+                try
+                {
+                    //throw new Exception("Test Exception");
+
+                    var result = await _roleManager.DeleteAsync(role);
+
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("ListRoles");
+                    }
+
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+                    }
+
+                    return View("ListRoles");
+                }
+                catch (DbUpdateException ex)
+                {
+                    _logger.LogError($"Exception Occured : {ex}");
+                    ViewBag.ErrorTitle = $"{role.Name} role is in use";
+                    ViewBag.ErrorMessage = $"{role.Name} role cannot be deleted as there are users in this role. If you want to delete this role, please remove the users from the role and then try to delete";
+                    return View("Error");
+                }
+            }
+        }
         [HttpGet]
         public async Task<IActionResult> EditUsersInRole(string roleId, string roleName)
         {
