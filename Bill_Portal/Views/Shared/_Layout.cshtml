@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject Microsoft.AspNetCore.Identity.SignInManager<BillUsers> _signInManager
+ 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -6,6 +9,8 @@
     <title>@ViewData["Title"] - Bill_Portal</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    
+    
 </head>
 <body>
     <header>
@@ -28,8 +33,30 @@
                             <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-controller="Dashboard" asp-action="Index">Users</a>
+                            <a class="nav-link text-white" asp-controller="Dashboard" asp-action="Index">Tarifs</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-controller="Roles" asp-action="ListRoles">Notifications</a>
+                        </li>
+
+                        @if (_signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item dropdown no-arrow">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Manage
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" asp-controller="Dashboard"
+                                   asp-action="ListUsers"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Users</a>
+                                   <hr/>
+                                    <a class="dropdown-item" asp-controller="Roles"
+                                   asp-action="ListRoles"><i class=" fas fa-people-line fa-sm fa-fw mr-2 text-gray-400"></i>Roles</a>
+                                </div>
+                            </li>
+                        }
+
+
                         
                     </ul>
                 </div>

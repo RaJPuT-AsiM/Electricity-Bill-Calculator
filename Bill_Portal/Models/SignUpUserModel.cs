@@ -14,14 +14,6 @@ namespace Bill_Portal.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage ="*")]
-        [Display(Name = "Role")]
-        public string Role { get; set; }
-
-        [Required(ErrorMessage = "*")]
-        [Display(Name = "Role Id")]
-        public string RoleId { get; set; }
-
         [Required(ErrorMessage = "*")]
         [Display(Name = "Mobile No.")]
         public string Mobile { get; set; }

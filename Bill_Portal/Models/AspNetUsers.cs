@@ -1,16 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data;
+using System.Security.Claims;
 
 namespace Bill_Portal.Models
 {
     public partial class AspNetUsers
     {
+
+
         public AspNetUsers()
         {
             AspNetUserClaims = new HashSet<AspNetUserClaims>();
             AspNetUserLogins = new HashSet<AspNetUserLogins>();
             AspNetUserRoles = new HashSet<AspNetUserRoles>();
+            
             AspNetUserTokens = new HashSet<AspNetUserTokens>();
         }
 
@@ -31,10 +36,6 @@ namespace Bill_Portal.Models
         public int AccessFailedCount { get; set; }
         [Display(Name ="Name")]
         public string FullName { get; set; }
-        [Display(Name = "Role")]
-        public string Role { get; set; }
-        [Display(Name = "Role Id")]
-        public string RoleId { get; set; }
 
         public virtual ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }

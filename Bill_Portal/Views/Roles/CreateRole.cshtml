@@ -1,0 +1,26 @@
+﻿@model Bill_Portal.ViewModels.CreateRoleViewModel
+
+@{
+    ViewBag.Title = "Create Role";
+}
+<h1>Create New Role</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post">
+                <div class="form-group">
+                    <label asp-for="RoleName" class="control-label"></label>&nbsp;<span asp-validation-for="RoleName" class="text-danger font-weight-bold"></span>
+                    <input asp-for="RoleName" class="form-control" />                    
+                </div>
+                <div asp-validation-summary="ModelOnly" class="alert-danger"></div>
+                <hr />                
+                <div class="form-group">
+                    <input type="submit" value="Create New Role" class="btn btn-primary" />
+                </div>
+                <div>
+                    <a asp-action="ListRoles">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -23,23 +23,21 @@ namespace Bill_Portal.Repository
             var user = new BillUsers()
             {
                 Full_Name = userModel.Full_Name,
-                Role = userModel.Role,
-                RoleId=userModel.RoleId,
+                //Role = userModel.Role,
+                //RoleId=userModel.RoleId,
                 PhoneNumber=userModel.Mobile,
-               // Mobile=userModel.Mobile,
+                // Mobile=userModel.Mobile,
                 Email = userModel.Email,
                 UserName = userModel.Email
             };
             
             var result = await _userManager.CreateAsync(user, userModel.Password);
             return result;
-        }
-
-     
+        }    
 
         public async Task<SignInResult> PasswordSignInAsync(SignInUserModel signInUserModel)
         {
-          var result = await _signInManager.PasswordSignInAsync(signInUserModel.Email,signInUserModel.Password,signInUserModel.RememberMe,false);
+          var result = await _signInManager.PasswordSignInAsync(signInUserModel.Email,signInUserModel.Password,signInUserModel.RememberMe,true);
           return (result);
         }
         public async Task SignOutAsync()
@@ -51,6 +49,11 @@ namespace Bill_Portal.Repository
             var userId= _userService.GetUserId();
             var userid= await _userManager.FindByIdAsync(userId);
             return await _userManager.ChangePasswordAsync(userid, changePasswordModel.CurrentPassword, changePasswordModel.NewPassword);
+            
+        }
+
+        public async Task GetUserId()
+        {
             
         }
     }

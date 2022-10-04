@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Bill_Portal.Models
 {
@@ -10,8 +11,9 @@ namespace Bill_Portal.Models
             AspNetRoleClaims = new HashSet<AspNetRoleClaims>();
             AspNetUserRoles = new HashSet<AspNetUserRoles>();
         }
-
+        [Display(Name="Role Id")]
         public string Id { get; set; }
+        [Display(Name="Role Name")]
         public string Name { get; set; }
         public string NormalizedName { get; set; }
         public string ConcurrencyStamp { get; set; }

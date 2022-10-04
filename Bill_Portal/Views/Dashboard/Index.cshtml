@@ -1,27 +1,24 @@
 ﻿@model IEnumerable<Bill_Portal.Models.AspNetUsers>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "User";
 }
 
-<h1 class="text-primary">Register Users</h1>
+<h1 class="text-info">Users</h1>
 
-<p>
-   
-</p>
 <table class="table table-hover table-light table-responsive-sm">
     <thead class="bg-info text-white">
-        <tr>
+        <tr >
             <th>
                 @*@Html.DisplayName("Sr No.")*@
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.FullName)
+            </th>*@
+            <th>
+                <a class="text-white" asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.UserName)</a>
             </th>
             @*<th>
-                @Html.DisplayNameFor(model => model.UserName)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.NormalizedUserName)
             </th>*@
             <th>
@@ -44,6 +41,7 @@
             </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.PhoneNumber)
+                
             </th>
             @*<th>
                 @Html.DisplayNameFor(model => model.PhoneNumberConfirmed)
@@ -61,14 +59,15 @@
                 @Html.DisplayNameFor(model => model.AccessFailedCount)
             </th>
  *@          
-            <th>
-                @Html.DisplayNameFor(model => model.Role)
-            </th>
+          @*  <th>
+                <a class="text-white" asp-action="Index" asp-route-sortOrder="@ViewData["RoleSortParm"]">@Html.DisplayNameFor(model => model.Role)</a>
+                
+            </th>*@
             @*<th>
                 @Html.DisplayNameFor(model => model.RoleId)
             </th>*@
             <th>
-                <a class="btn btn-light float-right" asp-action="SignUpUser" asp-controller="Accounts">Create New</a>
+                <a class="btn btn-light float-right" asp-action="SignUpUser" asp-controller="Account">Create New</a>
             </th>
         </tr>
     </thead>
@@ -127,15 +126,16 @@
                 @Html.DisplayFor(modelItem => item.AccessFaile  dCount)
             </td>*@
             
-            <td>
+          @*  <td>
                 @Html.DisplayFor(modelItem => item.Role)
-            </td>
+            </td>*@
            @* <td>
                 @Html.DisplayFor(modelItem => item.RoleId)
             </td>*@
             <td class="float-right">
                 <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a class="btn btn-secondary" asp-action="ManageUserRoles" asp-route-id="@item.Id" asp-route-name="@item.FullName">Manage Role</a> |
                 <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>

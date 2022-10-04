@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Bill_Portal.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class HomeController : Controller
     {
       

@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ReflectionIT.Mvc.Paging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,12 +37,15 @@ namespace Bill_Portal
             services.AddScoped<IUserService, UserService>();
             services.AddControllersWithViews();
             
-            var connection = "Server = DESKTOP-QG3ILAS\\SQLEXPRESS; Database = Billing_Portal_Db; Trusted_Connection = True;";
+            
+            var connection = "Server = DESKTOP-QG3ILAS\\SQLEXPRESS; Database = Billing_Portal_Db; Trusted_Connection = True; MultipleActiveResultSets=true;";
             services.AddDbContext<Billing_Portal_DbContext>(options => options.UseSqlServer(connection));
             services.AddDbContext<Billing_Portal_Db_CRUD_Context>(options => options.UseSqlServer(connection));
             services.AddIdentity<BillUsers, IdentityRole>()
                 .AddEntityFrameworkStores<Billing_Portal_DbContext>();
+            
             services.AddScoped<IAccountRepository, AccountRepository>();
+            
             //Configure Password
             services.Configure<IdentityOptions>(options =>
             {
@@ -50,11 +54,12 @@ namespace Bill_Portal
                 options.Password.RequireLowercase = false;
                 options.Password.RequireUppercase = false;
                 options.Password.RequiredUniqueChars = 1;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1);
             });
             // configure unauthorized access to login page
             services.ConfigureApplicationCookie(config =>
                 {
-                    config.LoginPath = "/Accounts/SignInUser";
+                    config.LoginPath = "/Account/SignInUser";
                 });
         }
 
@@ -85,7 +90,7 @@ namespace Bill_Portal
                 endpoints.MapDefaultControllerRoute();
                 //endpoints.MapControllerRoute(
                 //    name: "default",
-                //   pattern: "{controller=Accounts}/{action=SignInUser}/{id?}");
+                //   pattern: "{controller=Roles}/{action=CreateRole}/{id?}");
             });
         }
     }

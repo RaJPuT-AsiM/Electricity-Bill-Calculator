@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject Microsoft.AspNetCore.Identity.SignInManager<BillUsers> _signInManager
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 @if(_signInManager.IsSignedIn(User))
 {
     @*<li class="nav-item dropdown">
@@ -16,7 +16,7 @@
        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
             <span class="mr-2 d-lg-inline text-600 small" style="font-weight: bold; font-size: 15px; color: #fff;">
-                <i class="fa fa-cog "></i>&nbsp; Welcome @(User.FindFirst("UserFullName").Value) <i class="fa fa-caret-down" style="color: #fff"></i>
+                &nbsp; Hi &nbsp; @(User.FindFirst("UserFullName").Value) @*<i class="fa fa-caret-down" style="color: #fff"></i>*@
             </span>
         </a>
         <!-- Dropdown - User Information -->
@@ -63,7 +63,7 @@ else
             <div class="modal-body">Are you sure to logout?</div>
             <div class="modal-footer">
                 @* <button class="btn btn-dark" type="button" data-dismiss="modal">No</button>*@
-                <a class="btn btn-outline-danger" asp-action="Logout" asp-controller="Accounts">Logout</a>
+                <a class="btn btn-outline-danger" asp-action="Logout" asp-controller="Account">Logout</a>
             </div>
         </div>
     </div>

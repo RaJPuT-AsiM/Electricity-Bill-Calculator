@@ -4,10 +4,10 @@ namespace Bill_Portal.Models
 {
     public class SignInUserModel
     {
-        [Required]
-        [EmailAddress]
+        [Required(ErrorMessage ="*")]
+        [EmailAddress(ErrorMessage ="Incorrect Email")]
         public string Email { get; set; }
-        [Required]
+        [Required(ErrorMessage = "*")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
         [Display(Name ="Remember Me")]

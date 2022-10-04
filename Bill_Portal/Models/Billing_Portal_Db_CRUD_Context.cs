@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -22,8 +23,7 @@ namespace Bill_Portal.Models
         public virtual DbSet<AspNetUserRoles> AspNetUserRoles { get; set; }
         public virtual DbSet<AspNetUserTokens> AspNetUserTokens { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
-        public virtual DbSet<UserRoles> UserRoles { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
+ 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -37,6 +37,13 @@ namespace Bill_Portal.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+        //    ////if record in a role then it will restrict to delete the role.
+        //    foreach (var foreignKey in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+        //    {
+        //        foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
+        //    }
+
+
             modelBuilder.Entity<AspNetRoleClaims>(entity =>
             {
                 entity.HasIndex(e => e.RoleId);
@@ -129,49 +136,6 @@ namespace Bill_Portal.Models
                 entity.Property(e => e.UserName).HasMaxLength(256);
             });
 
-            modelBuilder.Entity<UserRoles>(entity =>
-            {
-                entity.Property(e => e.Role)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-            });
-
-            modelBuilder.Entity<Users>(entity =>
-            {
-                entity.HasKey(e => e.UserId);
-
-                entity.Property(e => e.UserId).HasColumnName("User_Id");
-
-                entity.Property(e => e.Email)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.FullName)
-                    .IsRequired()
-                    .HasColumnName("Full_Name")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Mobile)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Password)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UserRole)
-                    .IsRequired()
-                    .HasColumnName("User_Role")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UserRoleId).HasColumnName("User_Role_Id");
-            });
 
             OnModelCreatingPartial(modelBuilder);
         }
