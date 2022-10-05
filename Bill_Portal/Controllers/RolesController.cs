@@ -26,7 +26,7 @@ namespace Bill_Portal.Controllers
         {
             _roleManager = roleManager;
             _userManager = userManager;
-            _logger = logger;
+            _logger = logger; 
         }
         [HttpGet]
         public IActionResult ListRoles()

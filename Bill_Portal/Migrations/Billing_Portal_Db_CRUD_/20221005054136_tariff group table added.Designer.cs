@@ -4,14 +4,16 @@ using Bill_Portal.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Bill_Portal.Migrations.Billing_Portal_Db_CRUD_
 {
     [DbContext(typeof(Billing_Portal_Db_CRUD_Context))]
-    partial class Billing_Portal_Db_CRUD_ContextModelSnapshot : ModelSnapshot
+    [Migration("20221005054136_tariff group table added")]
+    partial class tariffgrouptableadded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

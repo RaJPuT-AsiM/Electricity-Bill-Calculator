@@ -16,6 +16,7 @@ namespace Bill_Portal.Models
         {
         }
 
+        public virtual DbSet<tariff_group> tariff_groups { get; set; }
         public virtual DbSet<notification> notifications { get; set; }
         public virtual DbSet<disco> discos { get; set; }
         public virtual DbSet<AspNetRoleClaims> AspNetRoleClaims { get; set; }
