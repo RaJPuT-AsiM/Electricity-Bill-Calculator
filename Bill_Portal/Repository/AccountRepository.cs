@@ -23,10 +23,7 @@ namespace Bill_Portal.Repository
             var user = new BillUsers()
             {
                 Full_Name = userModel.Full_Name,
-                //Role = userModel.Role,
-                //RoleId=userModel.RoleId,
-                PhoneNumber=userModel.Mobile,
-                // Mobile=userModel.Mobile,
+                PhoneNumber=userModel.Mobile, 
                 Email = userModel.Email,
                 UserName = userModel.Email
             };
@@ -49,11 +46,6 @@ namespace Bill_Portal.Repository
             var userId= _userService.GetUserId();
             var userid= await _userManager.FindByIdAsync(userId);
             return await _userManager.ChangePasswordAsync(userid, changePasswordModel.CurrentPassword, changePasswordModel.NewPassword);
-            
-        }
-
-        public async Task GetUserId()
-        {
             
         }
     }

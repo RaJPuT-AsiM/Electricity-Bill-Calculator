@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Bill_Portal.Models.notification>
+﻿@model IEnumerable<Bill_Portal.ViewModels.NotificationViewModel>
 
 @{
     ViewData["Title"] = "notifications_list";
@@ -19,7 +19,7 @@
                 @Html.DisplayNameFor(model => model.notification_title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.notification_document)
+                @Html.DisplayNameFor(model => model.notification_image)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.description)
@@ -28,7 +28,7 @@
                 @Html.DisplayNameFor(model => model.date)
             </th>
             <th>
-                <a class="btn btn-light float-right" asp-action="Create" asp-controller="CRUD">Add Notification</a>
+                <a class="btn btn-light float-right" asp-action="CreateNotification" asp-controller="CRUD">Add Notification</a>
             </th>
         </tr>
     </thead>
@@ -48,7 +48,8 @@
                 @Html.DisplayFor(modelItem => item.notification_title)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.notification_document)
+                <img src="@item.notification_image_url" class="img-thumbnail" width="150px" height="150px" />
+                  @*  @Html.DisplayFor(modelItem => item.notification_image)*@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.description)

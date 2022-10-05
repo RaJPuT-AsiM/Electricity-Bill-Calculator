@@ -35,6 +35,7 @@ namespace Bill_Portal
             services.AddScoped<IUserClaimsPrincipalFactory<BillUsers>, BillUserClaimsPricipalFactory>();
             //userservice
             services.AddScoped<IUserService, UserService>();
+            
             services.AddControllersWithViews();
             
             
@@ -45,7 +46,8 @@ namespace Bill_Portal
                 .AddEntityFrameworkStores<Billing_Portal_DbContext>();
             
             services.AddScoped<IAccountRepository, AccountRepository>();
-            
+            services.AddScoped<NotificationRepository, NotificationRepository>();
+
             //Configure Password
             services.Configure<IdentityOptions>(options =>
             {

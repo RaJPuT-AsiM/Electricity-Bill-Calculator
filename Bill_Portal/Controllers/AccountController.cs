@@ -56,8 +56,6 @@ namespace Bill_Portal.Controllers
         {
             return View();
         }
-
-          
         [HttpPost]
         public async Task<IActionResult> SignInUser(SignInUserModel signInUserModel,string returnUrl)
         {

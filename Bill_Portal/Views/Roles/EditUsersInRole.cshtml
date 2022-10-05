@@ -8,7 +8,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            <form method="post">
+            <form asp-action="EditUsersInRole" asp-controller="Roles" method="post">
                 <div class="card">
                     <div class="card-header">
                         <h2>Add or remove users from @roleName role</h2>
@@ -27,7 +27,7 @@
                         }
                     </div>
                     <div class="card-footer">
-                        <input type="submit" value="Update" class="btn btn-primary"
+                        <input asp-route-roleId="@roleId" type="submit" value="Update" class="btn btn-primary"
                                style="width:auto" />
                         <a asp-controller="Roles" asp-action="EditRole" asp-route-id="@roleId"
                            class="btn btn-primary" style="width:auto">Cancel</a>
