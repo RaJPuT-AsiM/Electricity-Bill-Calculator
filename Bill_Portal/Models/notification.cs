@@ -24,6 +24,7 @@ namespace Bill_Portal.Models
         public string description { get; set; }
 
         [Display(Name = "Date")]
+        [DisplayFormat(DataFormatString = "{0:dd-MMM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime date { get; set; }
     }
 }

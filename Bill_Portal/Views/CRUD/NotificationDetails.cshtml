@@ -1,0 +1,62 @@
+﻿@model Bill_Portal.Models.notification
+
+@{
+    ViewData["Title"] = "Notification Details";
+}
+
+<div>
+  
+    <hr />
+
+
+    <div class="row ">
+        <div class="card col-5 bg-light shadow-lg" >
+            <div class="card-header">
+                <h4>Notification Details</h4>
+            </div>
+            <div class="card-body ">
+            <dl class="mt-2 row">
+                <dt class="col-3">
+                    @Html.DisplayNameFor(model => model.notification_serial)
+                </dt>
+                <dd class="col-9">
+                    @Html.DisplayFor(model => model.notification_serial)
+                </dd>
+                <dt class="col-3">
+                    @Html.DisplayNameFor(model => model.notification_title)
+                </dt>
+                <dd class="col-9">
+                    @Html.DisplayFor(model => model.notification_title)
+                </dd>
+                <dt class="col-4">
+                    @Html.DisplayNameFor(model => model.description)
+                </dt>
+                <dd class="col-8">
+                    @Html.DisplayFor(model => model.description)
+                </dd>
+                <dt class="col-3">
+                    @Html.DisplayNameFor(model => model.date)
+                </dt>
+                <dd class="col-9">
+                    @Html.DisplayFor(model => model.date)
+                </dd>
+            </dl>
+          
+            <div style="margin-top: 450px">
+                <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.notification_id">Edit</a> |
+                    <a asp-action="notifications_list" asp-controller="CRUD">Go To All Notifications</a>
+                </div>
+            </div>
+        </div>
+        <div class="card col-7 shadow-lg">
+            <dt class="card-header">
+                <h4>@Html.DisplayNameFor(model => model.notification_document)</h4>
+            </dt>
+            <dd class="card-body col-sm-10">
+                <img src="@Model.notification_document" />                
+            </dd>
+          
+        </div>
+    </div>             
+</div>
+

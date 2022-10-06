@@ -11,6 +11,7 @@ using Bill_Portal.ViewModels;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using System.Linq;
 
 namespace Bill_Portal.Controllers
 {
@@ -33,9 +34,9 @@ namespace Bill_Portal.Controllers
         [Authorize(Roles = "Admin,Reader,Manager")]
         public async Task<IActionResult> notifications_list()
         {
-                var data = await _notificationRepository.GetAllNotificatinos();
+                var notifyList = await _notificationRepository.GetAllNotificatinos();
 
-                return View(data);
+                return View(notifyList);
            // return View(await _context.notifications.ToListAsync());
         }
         //Adding New Notifications
@@ -70,40 +71,21 @@ namespace Bill_Portal.Controllers
             return View();
         }
     
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> NotificationDetails(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
-            var transactionModel = await _context.notifications
-                .FirstOrDefaultAsync(m => m.notification_id == id);
-            if (transactionModel == null)
-            {
-                return NotFound();
+            var notificationModel = await _context.notifications.FirstOrDefaultAsync(m => m.notification_id == id);
+            //var model = await _notificationRepository.NotificationDetails(id);
+            if (notificationModel == null)
+           {
+              return NotFound();
             }
 
-            return View(transactionModel);
-        }
-        [Authorize(Roles = "Admin,Manager")]
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        [HttpPost]        
-        public async Task<IActionResult> Create([Bind("notification_id,notification_serial,notification_title,notification_document,description,date")] notification notificationModel)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(notificationModel);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(notifications_list));
-            }
             return View(notificationModel);
         }
-
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)

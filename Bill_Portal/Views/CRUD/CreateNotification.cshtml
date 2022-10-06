@@ -3,11 +3,12 @@
 @{
     ViewData["Title"] = "Create";
 }
-
-<h1>Add Notification</h1>
+<div class="bg-info text-white col-12 shadow">
+    <h2>Add Notification</h2>
+</div>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4 shadow">
         <form asp-action="CreateNotification" enctype="multipart/form-data" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -23,31 +24,50 @@
             <div class="form-group">
                 <label asp-for="notification_image" class="control-label"></label>
                 <div class="custom-file">
-                    <input asp-for="notification_image" class="custom-file-input" id="customFile" style="cursor:pointer" accept="">
-                    <label class="custom-file-label" for="customFile">Choose file</label>
+                    <input id=" ImgUpload" onchange="ImgPre(this)" asp-for="notification_image" class="custom-file-input"  style="cursor:pointer" accept="image/jpg, image/png, image/jpeg">
+                    <label class="custom-file-label" for="customFile"></label>
                 </div>
                 <span asp-validation-for="notification_image" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="description" class="control-label"></label>
                 <textarea asp-for="description" class="form-control"></textarea>
-                @*<input asp-for="description" class="form-control" />*@
+                
                 <span asp-validation-for="description" class="text-danger"></span>
             </div>
             
             <div class="form-group">
                 <label asp-for="date" class="control-label"></label>
-                <input asp-for="date" class="form-control" />
+                <input type="date" asp-format="{0:yyyy-MM-dd}" asp-for="date" class="form-control" />
                 <span asp-validation-for="date" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <div class="form-group flaot-right">
+                <input type="submit" value="Add Notification" class="btn btn-info" />
             </div>
         </form>
+        <div>
+            <a class="btn btn-light float-right" asp-action="notifications_list"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;Back to List</a>
+        </div>
+    </div>
+    <div class="shadow col-8">
+        <p>
+            <img id="ImgPreview" />
+        </p>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
+
+@section Scripts{
+    <script>
+        function ImgPre(input) {
+            if (input.files[0]) {
+                var uploadimg = new FileReader();
+                uploadimg.onload = function (displayimg) {
+                    $("#ImgPreview").attr('src', displayimg.target.result);
+                }
+                uploadimg.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+}

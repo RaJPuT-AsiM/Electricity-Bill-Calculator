@@ -7,6 +7,7 @@ using System;
 using Bill_Portal.ViewModels;
 using System.Linq;
 using Microsoft.Data.SqlClient;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Bill_Portal.Repository
 {
@@ -25,6 +26,7 @@ namespace Bill_Portal.Repository
             {
                 notification_serial = model.notification_serial,
                 notification_title = model.notification_title,
+                description = model.description,
                 notification_document = model.notification_image_url,
                 notification_id = model.notification_id,
                 date = model.date,
@@ -41,13 +43,22 @@ namespace Bill_Portal.Repository
         {
             return await _crud_Context.notifications.Select(notify => new NotificationViewModel()
                   {
+                      notification_id = notify.notification_id,
                       notification_serial = notify.notification_serial,
                       notification_image_url = notify.notification_document,
+                      description = notify.description,
                       notification_title = notify.notification_title,
                       date = notify.date,
                   }).ToListAsync();
         }
         //Updating Notification
+
+        //Notification Details
+        //public async Task <int> NotificationDetails(int? id)
+        //{
+        //    var details = await _crud_Context.notifications.FirstOrDefaultAsync(m => m.notification_id == id);
+        //    return details.notification_id;           
+        //}
 
         //Deleting Notification
     }

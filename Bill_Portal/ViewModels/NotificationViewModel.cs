@@ -29,6 +29,7 @@ namespace Bill_Portal.ViewModels
 
         [Required(ErrorMessage = "*")]
         [Display(Name = "Date")]
+        [DisplayFormat(DataFormatString = "{0:dd-MMM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime date { get; set; }
 
         public string notification_image_url { get; set; }
