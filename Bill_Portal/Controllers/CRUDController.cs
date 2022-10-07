@@ -88,6 +88,7 @@ namespace Bill_Portal.Controllers
 
             return View(notificationModel);
         }
+        [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)

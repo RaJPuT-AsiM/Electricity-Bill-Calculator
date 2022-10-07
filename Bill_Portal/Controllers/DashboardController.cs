@@ -34,23 +34,23 @@ namespace Bill_Portal.Controllers
         }
 
         // Get with sorting
-        public IActionResult Index(string sortOrder)
+        public IActionResult Index()
         {
-            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            //ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
 
-            ViewData["RoleSortParm"] = String.IsNullOrEmpty(sortOrder) ? "role_desc" : "";
+            //ViewData["RoleSortParm"] = String.IsNullOrEmpty(sortOrder) ? "role_desc" : "";
 
             var employees = from e in _context.AspNetUsers select e;
-            switch (sortOrder)
-            {
-                case "name_desc":
-                    employees = employees.OrderByDescending(e => e.FullName);
-                    break;
-                default:
-                    employees = employees.OrderBy(e => e.FullName);
-                    break;
+            //switch (sortOrder)
+            //{
+            //    case "name_desc":
+            //        employees = employees.OrderByDescending(e => e.FullName);
+            //        break;
+            //    default:
+            //        employees = employees.OrderBy(e => e.FullName);
+            //        break;
 
-            }
+            //}
             return View(employees);
         }
              

@@ -9,34 +9,35 @@
     <title>@ViewData["Title"] - Bill_Portal</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-    
-    
+  
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light text-dark border-bottom shadow mb-3">
             <div class="container">
-                <a class="navbar-brand font-weight-bolder" asp-area="" asp-controller="Home" asp-action="Index">Bill_Portal</a>
+                <a class="navbar-brand font-weight-bolder" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/documents/images/logo/pitclogo.png" width="70" height="70" />&nbsp;Bill_Portal
+                </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse font-weight-bolder">
                     <ul class="navbar-nav">
                         <partial name="_LoginInfo"/>
                     </ul>
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-controller="" asp-action="">Tarifs</a>
+                            <a class="nav-link" asp-controller="" asp-action="">Tarifs</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-controller="CRUD" asp-action="notifications_list">Notifications</a>
+                            <a class="nav-link" asp-controller="CRUD" asp-action="notifications_list">Notifications</a>
                         </li>
 
                         @if (_signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
@@ -76,6 +77,8 @@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/datatables/jquery.datatables.js"></script>
+    <script src="~/datatables/jquery.datatables.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 </body>

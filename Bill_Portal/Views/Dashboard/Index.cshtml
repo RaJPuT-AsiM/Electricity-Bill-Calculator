@@ -13,7 +13,8 @@
                 @*@Html.DisplayName("Sr No.")*@
             </th>
             <th>
-                <a class="text-white" asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.UserName)</a>
+                @Html.DisplayNameFor(model => model.FullName)
+                @*<a class="text-white" asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.UserName)</a>*@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Email)
