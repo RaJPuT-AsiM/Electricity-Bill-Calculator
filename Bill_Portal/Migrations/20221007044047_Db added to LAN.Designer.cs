@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Bill_Portal.Migrations.Billing_Portal_Db_CRUD_
+namespace Bill_Portal.Migrations
 {
     [DbContext(typeof(Billing_Portal_Db_CRUD_Context))]
-    [Migration("20221004062402_role and role id coloumn deleted")]
-    partial class roleandroleidcoloumndeleted
+    [Migration("20221007044047_Db added to LAN")]
+    partial class DbaddedtoLAN
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -219,6 +219,89 @@ namespace Bill_Portal.Migrations.Billing_Portal_Db_CRUD_
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("Bill_Portal.Models.disco", b =>
+                {
+                    b.Property<int>("disco_id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("current_status")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("disco_name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("disco_notificationnotification_id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("notification_id")
+                        .HasColumnType("int");
+
+                    b.HasKey("disco_id");
+
+                    b.HasIndex("disco_notificationnotification_id");
+
+                    b.ToTable("discos");
+                });
+
+            modelBuilder.Entity("Bill_Portal.Models.notification", b =>
+                {
+                    b.Property<int>("notification_id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("notification_document")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("notification_serial")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("notification_title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("notification_id");
+
+                    b.ToTable("notifications");
+                });
+
+            modelBuilder.Entity("Bill_Portal.Models.tariff_group", b =>
+                {
+                    b.Property<int>("tariff_group_Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("current_status")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("notification_id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("tariff_group_code")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("tariff_group_name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("tariff_group_Id");
+
+                    b.ToTable("tariff_groups");
+                });
+
             modelBuilder.Entity("Bill_Portal.Models.AspNetRoleClaims", b =>
                 {
                     b.HasOne("Bill_Portal.Models.AspNetRoles", "Role")
@@ -268,6 +351,13 @@ namespace Bill_Portal.Migrations.Billing_Portal_Db_CRUD_
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Bill_Portal.Models.disco", b =>
+                {
+                    b.HasOne("Bill_Portal.Models.notification", "disco_notification")
+                        .WithMany()
+                        .HasForeignKey("disco_notificationnotification_id");
                 });
 #pragma warning restore 612, 618
         }

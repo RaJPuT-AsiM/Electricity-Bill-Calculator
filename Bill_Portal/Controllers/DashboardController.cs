@@ -17,7 +17,7 @@ using Bill_Portal.Services;
 
 namespace Bill_Portal.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class Dashboard : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;
@@ -33,14 +33,6 @@ namespace Bill_Portal.Controllers
             _context = context;            
         }
 
-        // GET: TransactionModels
-        //public async Task<IActionResult> Index(int page=1)
-        //{
-        //    var query = _context.AspNetUsers.AsNoTracking().OrderBy(s=>s.Id);
-        //    var model = await PagingList.CreateAsync(query, 1, page);
-        //    return View(model);
-        //}
-
         // Get with sorting
         public IActionResult Index(string sortOrder)
         {
@@ -54,12 +46,6 @@ namespace Bill_Portal.Controllers
                 case "name_desc":
                     employees = employees.OrderByDescending(e => e.FullName);
                     break;
-                //case "role_desc":
-                //    employees = employees.OrderByDescending(e => e.Role);
-                //    break;
-                //case "role":
-                //    employees = employees.OrderBy(e => e.Role);
-                //    break;
                 default:
                     employees = employees.OrderBy(e => e.FullName);
                     break;

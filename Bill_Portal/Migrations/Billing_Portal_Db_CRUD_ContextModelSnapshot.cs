@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Bill_Portal.Migrations.Billing_Portal_Db_CRUD_
+namespace Bill_Portal.Migrations
 {
     [DbContext(typeof(Billing_Portal_Db_CRUD_Context))]
     partial class Billing_Portal_Db_CRUD_ContextModelSnapshot : ModelSnapshot

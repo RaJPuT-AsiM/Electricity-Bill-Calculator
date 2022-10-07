@@ -39,7 +39,8 @@ namespace Bill_Portal
             services.AddControllersWithViews();
             
             
-            var connection = "Server = DESKTOP-NMRN2EE; Database = Billing_Portal_Db; User ID=BillCalculator; Password=Pitc@123; ";
+            var connection = "Server = DESKTOP-NMRN2EE; Database = Billing_Portal_Db; User ID=BillCalculator; Password=Pitc@123; MultipleActiveResultSets=true";
+           //var connection = "Server = DESKTOP-QG3ILAS\\SQLEXPRESS; Database = Billing_Portal_Db; Trusted_Connection=True";
             services.AddDbContext<Billing_Portal_DbContext>(options => options.UseSqlServer(connection));
             services.AddDbContext<Billing_Portal_Db_CRUD_Context>(options => options.UseSqlServer(connection));
             services.AddIdentity<BillUsers, IdentityRole>()

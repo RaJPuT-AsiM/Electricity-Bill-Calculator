@@ -3,12 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Bill_Portal.Migrations
 {
-    public partial class identityadded : Migration
+    public partial class DbaddedtoLAN : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "AspNetRoles",    
+                name: "AspNetRoles",
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
@@ -39,7 +39,8 @@ namespace Bill_Portal.Migrations
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    Full_Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -47,34 +48,37 @@ namespace Bill_Portal.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "User_Roles",
+                name: "notifications",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    notification_id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Role = table.Column<string>(unicode: false, maxLength: 50, nullable: false)
+                    notification_serial = table.Column<string>(nullable: true),
+                    notification_title = table.Column<string>(nullable: true),
+                    notification_document = table.Column<string>(nullable: true),
+                    description = table.Column<string>(nullable: true),
+                    date = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_User_Roles", x => x.Id);
+                    table.PrimaryKey("PK_notifications", x => x.notification_id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "tariff_groups",
                 columns: table => new
                 {
-                    User_Id = table.Column<int>(nullable: false)
+                    tariff_group_Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Full_Name = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
-                    Email = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
-                    Password = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
-                    Mobile = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
-                    User_Role = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
-                    User_Role_Id = table.Column<int>(nullable: false)
+                    tariff_group_code = table.Column<string>(nullable: true),
+                    tariff_group_name = table.Column<string>(nullable: true),
+                    current_status = table.Column<bool>(nullable: false),
+                    date = table.Column<DateTime>(nullable: false),
+                    notification_id = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.User_Id);
+                    table.PrimaryKey("PK_tariff_groups", x => x.tariff_group_Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -183,6 +187,29 @@ namespace Bill_Portal.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "discos",
+                columns: table => new
+                {
+                    disco_id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    disco_name = table.Column<string>(nullable: true),
+                    current_status = table.Column<bool>(nullable: false),
+                    date = table.Column<DateTime>(nullable: false),
+                    notification_id = table.Column<int>(nullable: false),
+                    disco_notificationnotification_id = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_discos", x => x.disco_id);
+                    table.ForeignKey(
+                        name: "FK_discos_notifications_disco_notificationnotification_id",
+                        column: x => x.disco_notificationnotification_id,
+                        principalTable: "notifications",
+                        principalColumn: "notification_id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -193,7 +220,7 @@ namespace Bill_Portal.Migrations
                 table: "AspNetRoles",
                 column: "NormalizedName",
                 unique: true,
-                filter: "[NormalizedName] IS NOT NULL");
+                filter: "([NormalizedName] IS NOT NULL)");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetUserClaims_UserId",
@@ -220,7 +247,12 @@ namespace Bill_Portal.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true,
-                filter: "[NormalizedUserName] IS NOT NULL");
+                filter: "([NormalizedUserName] IS NOT NULL)");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_discos_disco_notificationnotification_id",
+                table: "discos",
+                column: "disco_notificationnotification_id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -241,16 +273,19 @@ namespace Bill_Portal.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "User_Roles");
+                name: "discos");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "tariff_groups");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "notifications");
         }
     }
 }

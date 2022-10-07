@@ -19,6 +19,7 @@ namespace Bill_Portal.Controllers
     public class CRUDController : Controller
     {
         private readonly Billing_Portal_Db_CRUD_Context _context;
+        
         private readonly NotificationRepository _notificationRepository;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
@@ -29,6 +30,7 @@ namespace Bill_Portal.Controllers
             _notificationRepository = notificationRepository;
             _webHostEnvironment = webHostEnvironment;
             _context = context;
+            
         }
         //Getting All Notifications
         [Authorize(Roles = "Admin,Reader,Manager")]
@@ -75,7 +77,7 @@ namespace Bill_Portal.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return NotFound();  
             }
             var notificationModel = await _context.notifications.FirstOrDefaultAsync(m => m.notification_id == id);
             //var model = await _notificationRepository.NotificationDetails(id);
@@ -132,7 +134,6 @@ namespace Bill_Portal.Controllers
             }
             return View(notificationModel);
         }
-
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

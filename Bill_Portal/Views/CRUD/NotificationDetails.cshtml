@@ -5,12 +5,10 @@
 }
 
 <div>
-  
-    <hr />
-
+    
 
     <div class="row ">
-        <div class="card col-5 bg-light shadow-lg" >
+        <div class=" col-5 bg-light shadow-lg" >
             <div class="card-header">
                 <h4>Notification Details</h4>
             </div>
@@ -48,14 +46,15 @@
                 </div>
             </div>
         </div>
-        <div class="card col-7 shadow-lg">
+        <div class=" col-7 shadow-lg">
+            <dl>
             <dt class="card-header">
                 <h4>@Html.DisplayNameFor(model => model.notification_document)</h4>
             </dt>
             <dd class="card-body col-sm-10">
                 <img src="@Model.notification_document" />                
             </dd>
-          
+            </dl>
         </div>
     </div>             
 </div>
