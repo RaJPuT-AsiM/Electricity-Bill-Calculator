@@ -1,4 +1,5 @@
 ﻿using Bill_Portal.Models;
+using Bill_Portal.ViewModels;
 using Bill_Portal.Repository;
 using Bill_Portal.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -17,10 +18,8 @@ namespace Bill_Portal.Controllers
         public AccountController(IAccountRepository accountRepository, IUserService userService)
         {
             _accountRepository = accountRepository;
-            _userService = userService;
-      
+            _userService = userService;      
         }
-
         // Sing Up
         [HttpGet]
         public IActionResult SignUpUser()
@@ -89,7 +88,7 @@ namespace Bill_Portal.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> ChangePassword(ChangePasswordModel changePasswordModel)
+        public async Task<IActionResult> ChangePassword(ChangePasswordViewModel changePasswordModel)
         {
             if (ModelState.IsValid)
             {

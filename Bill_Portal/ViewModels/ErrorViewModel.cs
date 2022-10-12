@@ -1,6 +1,6 @@
 using System;
 
-namespace Bill_Portal.Models
+namespace Bill_Portal.ViewModels
 {
     public class ErrorViewModel
     {

@@ -5,6 +5,7 @@
 }
 
 <div>
+    
 
     <div class="row ">
         <div class=" col-5 bg-light shadow-lg" >
@@ -37,17 +38,10 @@
                 <dd class="col-9">
                     @Html.DisplayFor(model => model.date)
                 </dd>
-                <dt class="col-3">
-                    @Html.DisplayNameFor(model => model.notification_document)
-                </dt>
-                <dd class="col-9">
-                        <img src="~/documents/images/notifications/@Model.notification_document" />
-                    @*@Html.DisplayFor(model => model.notification_document)*@
-                </dd>
             </dl>
           
             <div style="margin-top: 450px">
-                <a class="btn btn-primary" asp-action="EditNotification" asp-controller="Notification" asp-route-id="@Model.notification_id">Edit</a> |
+                <a class="btn btn-primary" asp-action="EditNotification" asp-route-id="@Model.notification_id">Edit</a> |
                     <a asp-action="notifications_list" asp-controller="Notification">Go To All Notifications</a>
                 </div>
             </div>
@@ -58,7 +52,7 @@
                 <h4>@Html.DisplayNameFor(model => model.notification_document)</h4>
             </dt>
             <dd class="card-body col-sm-10">
-                    <img src="~/documents/images/notifications/@Model.notification_document" />
+                    <img src="@Model.notification_document" />
                 </dd>
             </dl>
         </div>

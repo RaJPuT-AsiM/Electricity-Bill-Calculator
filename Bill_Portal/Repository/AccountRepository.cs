@@ -1,4 +1,5 @@
 ﻿using Bill_Portal.Models;
+using Bill_Portal.ViewModels;
 using Bill_Portal.Services;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
@@ -41,7 +42,7 @@ namespace Bill_Portal.Repository
         {
             await _signInManager.SignOutAsync();
         }
-        public async Task<IdentityResult> ChangePasswordAsync(ChangePasswordModel changePasswordModel)
+        public async Task<IdentityResult> ChangePasswordAsync(ChangePasswordViewModel changePasswordModel)
         {
             var userId= _userService.GetUserId();
             var userid= await _userManager.FindByIdAsync(userId);

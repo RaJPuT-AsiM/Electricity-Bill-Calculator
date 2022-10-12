@@ -1,6 +1,8 @@
-﻿using Microsoft.VisualBasic;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.VisualBasic;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection.Metadata;
 
 namespace Bill_Portal.Models
@@ -23,6 +25,7 @@ namespace Bill_Portal.Models
         [Display(Name = "Description")]
         public string description { get; set; }
 
+        [Required(ErrorMessage ="*")]
         [Display(Name = "Date")]
         [DisplayFormat(DataFormatString = "{0:dd-MMM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime date { get; set; }

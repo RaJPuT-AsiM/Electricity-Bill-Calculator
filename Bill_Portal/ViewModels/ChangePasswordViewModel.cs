@@ -1,18 +1,18 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Bill_Portal.Models
+namespace Bill_Portal.ViewModels
 {
-    public class ChangePasswordModel
+    public class ChangePasswordViewModel
     {
-        [Required(ErrorMessage ="Required")]
+        [Required(ErrorMessage ="*")]
         [DataType(DataType.Password)]
         [Display(Name="Current Password")]
         public string CurrentPassword { get; set; }
-        [Required(ErrorMessage = "Required")]
+        [Required(ErrorMessage = "*")]
         [DataType(DataType.Password)]
         [Display(Name = "New Password")]
         public string NewPassword { get; set; }
-        [Required(ErrorMessage = "Required")]
+        [Required(ErrorMessage = "*")]
         [DataType(DataType.Password)]
         [Display(Name = "Confirm Password")]
         [Compare("NewPassword",ErrorMessage ="Password Not Matched")]

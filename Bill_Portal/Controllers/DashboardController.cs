@@ -262,8 +262,7 @@ namespace Bill_Portal.Controllers
             return View(model);
         }
 
-        [HttpPost]
-        
+        [HttpPost]        
         public async Task<IActionResult> ManageUserRoles(List<UserRolesViewModel> model, string? id)
         {            
             var user = await _userManager.FindByIdAsync(id);            

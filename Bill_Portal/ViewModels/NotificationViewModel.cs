@@ -2,10 +2,11 @@
 using System.Xml.Linq;
 using System;
 using Microsoft.AspNetCore.Http;
+using Bill_Portal.Models;
 
 namespace Bill_Portal.ViewModels
 {
-    public class NotificationViewModel
+    public class NotificationViewModel 
     {
         
         [Display(Name = "Id")]
@@ -20,7 +21,7 @@ namespace Bill_Portal.ViewModels
         public string notification_title { get; set; }
 
         [Required(ErrorMessage = "*")]
-        [Display(Name = "Image")]
+        [Display(Name = "Image Status")]
         public IFormFile notification_image { get; set; }
 
         [Required(ErrorMessage = "*")]

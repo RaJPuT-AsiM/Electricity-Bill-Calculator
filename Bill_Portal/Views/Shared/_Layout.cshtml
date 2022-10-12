@@ -34,10 +34,10 @@
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="" asp-action="">Tarifs</a>
+                            <a class="nav-link" asp-controller="" asp-action="">Tarif Group</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="CRUD" asp-action="notifications_list">Notifications</a>
+                            <a class="nav-link" asp-controller="Notification" asp-action="notifications_list">Notifications</a>
                         </li>
 
                         @if (_signInManager.IsSignedIn(User) && User.IsInRole("Admin"))

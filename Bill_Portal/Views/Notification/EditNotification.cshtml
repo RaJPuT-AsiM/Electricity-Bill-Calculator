@@ -1,0 +1,88 @@
+﻿@model Bill_Portal.ViewModels.NotificationEditViewModel
+
+@{
+    ViewData["Title"] = "EditNotification";
+}
+
+<h1>Edit Notification</h1>
+
+<div class="row">
+    <div class="col-md-4 shadow">
+        <form asp-action="EditNotification" asp-controller="Notification" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input type="hidden" asp-for="notification_ExistingPhotoPath" />
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group">
+                <label asp-for="notification_serial" class="control-label"></label>
+                <input asp-for="notification_serial" class="form-control" />
+                <span asp-validation-for="notification_serial" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="notification_title" class="control-label"></label>
+                <input asp-for="notification_title" class="form-control" />
+                <span asp-validation-for="notification_title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Image</label>
+                <input id=" ImgUpload" onchange="ImgPre(this)" asp-for="notification_image" class="form-control"
+                       style="cursor:pointer" accept="image/jpg, image/png, image/jpeg" />
+            </div>
+            <div class="form-group">
+                <label asp-for="description" class="control-label"></label>
+                <input asp-for="description" class="form-control" />
+                <span asp-validation-for="description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="date" class="control-label"></label>
+                <input asp-for="date" class="form-control" />
+                <span asp-validation-for="date" class="text-danger"></span>
+            </div>
+                <br/>
+            <div class="form-group ">
+                <a class="btn btn-light" asp-action="notifications_list">Back to List</a>
+                <input type="submit" value="Update Notification" class="btn btn-primary float-right " />
+                
+            </div>
+            
+        </form>
+    </div>
+    <div class="col-md-8 shadow ">
+        <img src="@Model.notification_ExistingPhotoPath" />
+    </div>
+    <div class="shadow col-md-8 float-right">
+            <img id="ImgPreview" class="float-right"/>
+    </div>
+</div>
+
+<div>
+   
+</div>
+
+@section Scripts{
+    <!-- Datepicker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+    <script>
+        function ImgPre(input) {
+            if (input.files[0]) {
+                var uploadimg = new FileReader();
+                uploadimg.onload = function (displayimg) {
+                    $("#ImgPreview").attr('src', displayimg.target.result);
+                }
+                uploadimg.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $(function () {
+            $('.datepicker').datepicker({
+                language: "es",
+                autoclose: true,
+                format: "dd/mmm/yyyy"
+            });
+        });
+
+    </script>
+
+}
