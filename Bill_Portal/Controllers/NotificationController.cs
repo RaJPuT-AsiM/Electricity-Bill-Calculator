@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.Web.CodeGeneration;
 using System;
 using System.Data;
 using System.IO;
@@ -79,6 +80,7 @@ namespace Bill_Portal.Controllers
         //    }
         //    return View(notificationModel);
         //}
+        [Route("notiDetail")]
         public IActionResult NotificationDetails(int? id)
         {
             if (id == null)
@@ -95,6 +97,7 @@ namespace Bill_Portal.Controllers
             return View(notificationModel);
         }
         //Edit Notification
+        [Route("notiEdit")]
         [HttpGet]
         public IActionResult EditNotification(int? id)
         {
@@ -123,9 +126,11 @@ namespace Bill_Portal.Controllers
                 {
                     if (notificationEditViewModel.notification_ExistingPhotoPath != null)
                     {
-                        string filePath = Path.Combine(_webHostEnvironment.WebRootPath +
-                            "/documents/images/notifications/" + notificationEditViewModel.notification_ExistingPhotoPath);
-                        System.IO.File.Delete(filePath);
+                        string filePath = Path.Combine(_webHostEnvironment.WebRootPath , notificationEditViewModel.notification_ExistingPhotoPath);
+                        if (System.IO.File.Exists(filePath))
+                        {
+                            System.IO.File.Delete(filePath);
+                        }
                     }                    
                     notification.date = notificationEditViewModel.date;
                     notification.notification_title = notificationEditViewModel.notification_title;
@@ -158,20 +163,21 @@ namespace Bill_Portal.Controllers
         //Uploading Notification Image
         private string ProcessUploadedFile(NotificationViewModel notificationViewModel)
         {
-            string uniqueFileName = null;
+            //string uniqueFileName = null;
+            string folder = null;
 
             if (notificationViewModel.notification_image != null)
             {
-                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath + "/documents/images/notifications/");
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + notificationViewModel.notification_image.FileName;
-                string filePath = Path.Combine(uploadsFolder + uniqueFileName);
-                using (var fileStream = new FileStream(filePath , FileMode.Create))
+                folder = "documents/images/notifications/";
+                folder += Guid.NewGuid().ToString() + "___" + notificationViewModel.notification_image.FileName;
+                string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folder);
+
+                using (var fileStream = new FileStream(serverFolder, FileMode.Create))
                 {
                     notificationViewModel.notification_image.CopyTo(fileStream);
                 }
             }
-            uniqueFileName = "/documents/images/notifications/"+uniqueFileName;
-            return uniqueFileName;
+            return folder;
         }
     }
 }

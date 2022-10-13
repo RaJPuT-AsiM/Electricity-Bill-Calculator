@@ -1,4 +1,6 @@
 ﻿@model Bill_Portal.Models.notification
+@using Microsoft.AspNetCore.Identity
+@inject Microsoft.AspNetCore.Identity.SignInManager<BillUsers> _signInManager
 
 @{
     ViewData["Title"] = "Notification Details";
@@ -40,10 +42,20 @@
                 </dd>
             </dl>
           
-            <div style="margin-top: 450px">
-                <a class="btn btn-primary" asp-action="EditNotification" asp-route-id="@Model.notification_id">Edit</a> |
-                    <a asp-action="notifications_list" asp-controller="Notification">Go To All Notifications</a>
+            <div style="margin-top:450px">
+
+                    <a asp-action="notifications_list" asp-controller="Notification" class="btn btn-light text-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;All Notifications</a>
+                <div class="float-right">
+                    @if (_signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                    {
+                        <a class="btn btn-primary btn-block" asp-action="EditNotification" asp-route-id="@Model.notification_id">Edit</a>
+                    }
+                    @if (_signInManager.IsSignedIn(User) && User.IsInRole("Manager"))
+                    {
+                        <a class="btn btn-primary btn-block" asp-action="EditNotification" asp-route-id="@Model.notification_id">Edit</a>
+                    }
                 </div>
+            </div>
             </div>
         </div>
         <div class=" col-7 shadow-lg">
@@ -52,7 +64,8 @@
                 <h4>@Html.DisplayNameFor(model => model.notification_document)</h4>
             </dt>
             <dd class="card-body col-sm-10">
-                    <img src="@Model.notification_document" />
+                    @*<img src="@Model.notification_document" />*@
+                    <img src="/@Url.Content(@Model.notification_document)" />
                 </dd>
             </dl>
         </div>

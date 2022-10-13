@@ -1,5 +1,6 @@
 ﻿@model Bill_Portal.ViewModels.NotificationEditViewModel
-
+@using Microsoft.AspNetCore.Identity
+@inject Microsoft.AspNetCore.Identity.SignInManager<BillUsers> _signInManager
 @{
     ViewData["Title"] = "EditNotification";
 }
@@ -41,24 +42,24 @@
             </div>
                 <br/>
             <div class="form-group ">
-                <a class="btn btn-light" asp-action="notifications_list">Back to List</a>
-                <input type="submit" value="Update Notification" class="btn btn-primary float-right " />
-                
-            </div>
-            
+                <a class="btn btn-light text-primary" asp-action="notifications_list"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;All Notifications</a>
+               
+                    <input type="submit" value="Update Notification" class="btn btn-primary float-right " />
+               
+            </div>            
         </form>
     </div>
     <div class="col-md-8 shadow ">
-        <img src="@Model.notification_ExistingPhotoPath" />
+         @*<img src="@(Model.notification_document)"/>*@
+        <img src="/@Url.Content(@Model.notification_ExistingPhotoPath)" />
     </div>
+
     <div class="shadow col-md-8 float-right">
             <img id="ImgPreview" class="float-right"/>
+        
     </div>
 </div>
 
-<div>
-   
-</div>
 
 @section Scripts{
     <!-- Datepicker -->
